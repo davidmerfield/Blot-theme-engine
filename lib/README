@@ -1,0 +1,4 @@
+compile - takes a directory of theme files and turns it into a list of templates and the routes which match
+store - takes the list of templates and routes and saves it for future retrieval. done with redis right now
+router - express middleware which works out which template to render for a given request
+renderer - express middleware which renders the template retrieved by router
