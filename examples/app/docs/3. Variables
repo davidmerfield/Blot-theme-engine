@@ -1,0 +1,44 @@
+3. Variables
+
+Please note that variables are case-sensitive.
+
+Use underscores instead of camelcase.
+
+You can specify variables inside the metdata for a template. For example.
+
+```
+---
+fruit: orange
+---
+
+That fruit is an {{fruit}}.
+```
+
+Will be rendered as:
+
+That fruit is an orange.
+
+## Blog
+
+
+
+## Entry
+
+
+## Entry lists
+
+page
+
+
+{{#recent-posts}}
+
+{{/recent-posts}}
+
+{{#all-posts}}
+
+{{/all-posts}}
+
+## Helpers
+
+{{equal url route}}
+{{truncate 10 title}}

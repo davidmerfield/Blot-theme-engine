@@ -1,0 +1,35 @@
+Before you touch Blot's template system you need your blog's contents and you need a good idea of how your blog should present that content. Your contents should be stored in a folder in a way that makes sense to you. Blot is designed to work with your preferred organization, rather than the other way around.
+
+themes are stored against their folder name,
+can contain spaces, is case sensitive.
+
+template files are server at theme/*name*/*file* regardless of whether the user has enabled local editing or not
+
+
+# Working with static files
+
+You can add static files to your theme's folder. Blot will leave them alone. If you want to reference them in your template, please prefix their path with the variable {{theme}}. For example, if you theme contained two files index.html and style.css, you could add style.css to index.html with this snippet:
+
+```
+<style src="{{theme}}/style.css">
+```
+
+You can create sub-folders and sub-sub-folders inside your theme's folder, just remember to include them when referencing those files in your templates.
+
+It is a good idea to use absolute paths references to static files. It is not a good idea to include your blog's domain.
+
+
+# Resources
+
+There are a small handful of good free and open-source typefaces. Here are the better ones:
+
+Charter
+Fira
+Source Code Pro
+
+If you would like to test your theme with a variety of content, you can download these sample blog folders:
+
+- Photos
+- Essays
+- Links and quotes
+- Mix of everything

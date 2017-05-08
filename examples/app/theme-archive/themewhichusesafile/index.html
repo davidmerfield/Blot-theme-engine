@@ -1,0 +1,21 @@
+---
+Routes:
+- index "/"
+---
+
+<!doctype html>
+<html lang="en">
+<head><title>{{name}}</title></head>
+<body>
+
+  <a href="/">Home</a>
+  <a href="/search">Search</a>
+
+  <h1>WELCOME.TXT</h1>
+
+  {{#file:/welcome.txt}}
+    {{html}}
+  {{/file:/welcome.txt}}
+
+</body>
+</html>

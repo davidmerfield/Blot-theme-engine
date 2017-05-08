@@ -1,0 +1,97 @@
+--- how do we add pagination to any list?
+
+	{{#page tagged:tag}}
+		{{#entries}}x
+		{{#next}}
+		{{#previous}}
+		{{#total}}
+  {{/page tagged:tag}}
+
+blog.template = 'template-subfolder' === /themes/$blogID/template-subfolder
+
+if the user renames the template, rename the folder then change blog.template if it was the blog's active template
+
+themes / BLOG ID / theme ID
+
+the template compiler always reads from
+
+  / themes / blogID
+
+it will re-render every theme on change? or can we get it to re-render a single theme?
+
+good idea?
+
+the syncer needs to check if a path matches /themes/* and if the blog has local editing enabled
+
+what about files with errors? should we save the file to disk and show the error? in the meantime, the blog will show an error. the template editor should try and catch obvious ones before letting a save through. It would be nice if the blog would continue to use the 'previous good version'?
+
+if (local editing is enabled globally?)
+
+  write files from themes / theme ID
+  synchronize any changes from blog / themes
+  to themes / blogID / *
+
+  if you delete a folder, the theme will go with it
+
+  if you add a folder, the theme appears
+
+else
+
+  read template from themes / blogID / *
+  on save template, save to disk
+
+-----------
+
+should templates inherit a default route or not?
+
+like style.css > /style.css
+like archives.html > /archives
+like index.html > /
+  - would then need to specific /page/:page
+like search.html > /search
+
+if you DO NOT define a route, then blot will serve it
+at /theme/*name*/file.html
+
+blot will automatically process text based files under a certain size
+
+-----------
+
+design page
+
+list of all templates, blot and custom. errors from the template compiler are surfaced if the user has enabled local editing.
+
+  > clicking on button to create a template
+
+    choose a name and template to clone then submit:
+
+      if local editing, write new folder to /themes
+      and tell the user.
+
+      if not local editing, write to folder to /themes/blogID
+      and
+
+  > clicking on blot template
+
+    takes to full template page
+    you can customize the template here
+    and enable it for your blog.
+
+    - customizations are stored as json in the
+      database? or on disk somewhere?
+
+    has an edit button to create a copy
+    of this template to customize
+
+  > clicking on custom template
+
+    shows any available customization options
+
+    - customizations are stored as json in db?
+
+    theres a button to choose it as your template
+
+    has an edit button which takes you to the template
+    editor or shows a page explaining where the template source files
+
+    shows any errors from the template compiler

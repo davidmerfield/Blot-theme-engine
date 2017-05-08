@@ -1,0 +1,6 @@
+{
+  "background": ["#fff", "color"],
+  "font-size": ["1", "1...10"],
+  "page-size": [12, [1,1000]],
+  "font-family": ["Work Sans", ["Work Sans", "Helvetica"]]
+}

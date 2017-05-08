@@ -1,0 +1,30 @@
+- index "/page/:page"
+- search "/search"
+- search "/search?query=:query"
+- permalink "/:permalink"
+
+
+{{#route.search}}
+  <p>You are on the search page.</p>
+  <form action="?"><input name="query" type="text" value=""></form>
+{{/route.search}}
+
+{{^route.search}}
+  <p>You are NOT on the search page.
+{{/route.search}}
+
+{{#route.index}}
+  {{#page}}
+
+    {{#posts}}
+
+    - {{title}}
+
+    {{/posts}}
+
+  {{/page}}
+{{/route.index}}
+
+{{#route.permalink}}
+  <p>You are on the permalink page.</p>
+{{/route.permalink}}

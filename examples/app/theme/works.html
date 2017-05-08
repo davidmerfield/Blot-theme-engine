@@ -1,0 +1,60 @@
+---
+Import:
+  - ignore.json
+  - foo.json
+Locals:
+  Page-Size: 2
+Parameters:
+  Page: 2
+---
+
+^^^^ should we offer a more programmatic way
+     to retrieve certain posts?
+
+^^^^ should we offer a programmatic way to
+     import data from another json file?
+
+{{> /partials/a.html}}
+
+{{#asset}}site.css{{/asset}}
+
+Welcome to the homepage!
+
+{{#folder-:path}}
+
+  {{#post}}
+
+  {{/post}}
+
+  {{#contents}}
+
+  {{/contents}}
+
+{{/folder-:path}}
+
+{{#page}}
+
+  {{#posts-tagged}}
+
+  {{/posts-tagged}}
+
+  tagged-TAG
+  in-PATH
+  from-PATH
+  after-DATE
+  before-DATE
+  sorted-by-SORT (latest, oldest, path, name)
+  with-metadata-KEY
+
+  {{#posts-tagged-apple-in-/posts-sorted-by-newest}}
+
+  {{/posts-tagged-apple-in-/posts-sorted-by-newest}}
+
+{{/page}}
+
+{{#page}}
+
+  {{#posts-in-/photos}}
+
+  {{/posts-in-/photos}}
+{{/page}}

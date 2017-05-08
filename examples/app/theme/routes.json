@@ -1,0 +1,6 @@
+routes: [
+  {"index.html": "/"},
+  {"index.html": "/page/2"},
+  {"index.html": "/"},
+  {"index.html": "/"}
+]

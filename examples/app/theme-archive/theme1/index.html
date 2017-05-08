@@ -1,0 +1,27 @@
+---
+Routes:
+- index "/"
+- index "/page/:page"
+- search "/search?query=:query"
+- permalink "/:permalink"
+---
+
+<!doctype html>
+<html>
+<head><title>{{title}}</title></head>
+<body>
+
+{{#route.index}}
+  <p>You are on the homepage!</p>
+{{/route.index}}
+
+{{#route.search}}
+  <p>You are on the search page!</p>
+{{/route.search}}
+
+{{#route.permalink}}
+  <p>You are on the page for an entry!</p>
+{{/route.permalink}}
+
+</body>
+</html>

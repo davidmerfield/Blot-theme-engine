@@ -1,0 +1,17 @@
+{
+  "name": "blot-theme-engine",
+  "version": "0.0.0",
+  "description": "",
+  "main": "",
+  "author": "David Merfield",
+  "license": "CC0",
+  "dependencies": {
+    "front-matter": "2.1.2",
+    "hogan.js": "3.0.2",
+    "mime-types": "2.1.15",
+    "minimatch": "3.0.3",
+    "redis": "2.7.1",
+    "rimraf": "2.6.1",
+    "route-parser": "0.0.5"
+  }
+}

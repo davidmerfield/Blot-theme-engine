@@ -1,0 +1,42 @@
+# Templates and routes
+
+Blot gives you control over the routing of requests to your blog. The manner in which URLs map to site content is known as routes.
+
+When a request from the internet make it to your blog, Blot first checks if there is a file in your blog's folder which matches the request's path.
+
+If there is no match, Blot proceeds to your theme's routes. Blot works its way down the list of your theme's routes and attempts to find a match.
+
+If it does not find a match, Blot will check your blog's list of redirects.
+
+Finally Blot will render your template's error page if it has one.
+
+# Route ordering
+
+The order you specify your routes is important. For example,
+
+Blot will read the template files in your theme alphabetically with two important exceptions: Routes containing the parameter :permalink are always checked first and routes containing the parameter :error are always checked last.
+
+# Route parameters
+
+:permalink -> must match the permalink of one of your posts. populates your template with
+:page -> must be an integer, populates your template with a page of posts.
+:query -> adds the results of a search for that query to your template's variables
+:tag -> adds a list of entries with that tag to your template's variables
+:folder -> adds the contents of the folder within your blog folder to your templates variables.
+:date -> must match a
+
+# Custom route parameters
+
+You can specify a custom parameter in a template's route. This will be passed to your template's variables. For example, let's create a template called 'index.html':
+
+````
+---
+Route: /echo/:test
+---
+
+<p>Your parameter is '{{params.test}}'</p>
+````
+
+When you visit /echo/hello, you'll see this:
+
+<p>Your parameter is 'hello'</p>

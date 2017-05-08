@@ -1,0 +1,17 @@
+---
+Route: /tagged/:tag
+---
+
+{{> header.html}}
+
+{{#tag}}
+
+  All the posts tagged {{name}}:
+
+  {{#posts}}
+    {{title}}<br><br>
+  {{/posts}}
+
+{{/tag}}
+
+{{> footer.html}}

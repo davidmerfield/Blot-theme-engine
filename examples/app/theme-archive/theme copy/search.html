@@ -1,0 +1,29 @@
+---
+Routes:
+- /search?query=:query
+- /search
+---
+
+<!DOCTYPE html>
+<html>
+  <body>
+
+    {{> header.html}}
+
+    <form action='/search'>
+      <input value="{{query}}" name="query" type="text" />
+    </form>
+
+    {{#query}}
+      {{^entries}}
+      <p>Wooho nothing here to see “{{query}}”</p>
+      {{/entries}}
+    {{/query}}
+
+    {{#entries}}
+      <a href="{{url}}">{{title}}</a>
+      <span class="small">{{date}}</span>
+      <br />
+    {{/entries}}
+  </body>
+</html>

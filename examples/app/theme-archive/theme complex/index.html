@@ -1,0 +1,232 @@
+---
+Routes:
+- index "/"
+---
+
+<!doctype html>
+<html lang="en">
+<head><title>{{name}}</title></head>
+<body>
+
+  <a href="/">Home</a>
+  <a href="/search">Search</a>
+
+  <h1>WELCOME.TXT</h1>
+
+  Add a URL rewrite feature to redirect feature
+
+  check if url matches a rewrite target:
+    if so change it internally to rewrite's source and continue
+    else continue
+
+  check if url matches a rewrite source:
+    if so redirect to rewrite targer
+    continue
+
+  /_randomColor > /randomColor [x] rewrite
+
+  /archives/:date -> date can be a year, month, day, specific hour
+
+  {{#page}}
+
+    {{#sort-by-date}}
+      {{#posts}}
+
+      {{/posts}}
+    {{/sort-by-date}}
+
+    {{next}}
+    {{previous}}
+    {{total}}
+  {{/page}}
+
+  /:path
+
+
+  {{#posts-sorted-date}}
+  {{#posts-in-Issues}}
+
+  {{/posts-in-Issues}}
+
+  {{#page}}
+    {{#posts}}{{#tagged.apple}}{{^tagged.pear}}
+
+    {{/tagged.pear}}{{/tagged.apple}}{{/posts}}
+  {{/page}}
+
+
+  WOULD USE THIS FOR MOST THINGS!
+
+  :date OR :permalink OR :metadata OR :tag OR :query OR :path
+
+  {{#matching-posts}}
+
+  {{/matching-posts}}
+
+
+  {{#posts-matching-parameters}}
+
+  {{/posts-matching-parameters}}
+
+
+  {{#page}}
+    {{#posts-matching-:date}}
+
+    {{/posts-matching-:date}}
+    {{next}}
+    {{previous}}
+    {{total}}
+  {{/page}}
+
+  {{#page}}
+    {{#metadata-author}}
+
+    {{/metadata-author}}
+    {{next}}
+    {{previous}}
+    {{total}}
+  {{/page}}
+
+  {{#page}}
+    {{#posts-tagged-apple}}
+
+    {{/posts-tagged-apple}}
+    {{next}}
+    {{previous}}
+    {{total}}
+  {{/page}}
+
+
+  what about sortable custom metadata?
+
+  routes with the parameter :permalink are always checked first
+  routes with the parameter :error are always checked last
+
+  any other routes are checked in the order they are declared.
+
+  // Some way to aggregate all the custom metdata
+  // from across the blog?
+  {{#metadata.format}}
+
+    {{value}}
+
+    {{posts.length}}
+
+  {{/metadata.format}}
+
+  {{#metadata.typefaces}}
+
+    {{value}}
+
+    {{posts.length}}
+
+  {{/metadata.typefaces}}
+
+  /typeface/:metadata.typeface/
+  /typeface/:metadata.typeface/page/:page
+
+    -> load all posts tagged typeface
+    ->
+
+  <!-- For each value that is stored against the
+       metadata key author -->
+  {{#metadata:author}}
+    {{value}}
+
+    <-- List of posts which match that value -->
+    {{#posts}}
+
+    {{/posts}}
+  {{/metadata:author}}
+
+  // how do we map lists in custom metadata?
+
+  Designer: Herb Lubalin
+  Tags: magazine covers, table of contents, text on cover
+  Typefaces:
+    - ITC Souvenir
+    - Serif Gothic
+  Formats: Magazines
+  Industries: Graphic design
+
+
+  {{#metadata.typefaces}}
+    <img src="/_typefaces/{{value}}">
+    {{#file:/_typefaces/{name}.txt}}
+
+  {{/posts}}
+
+  <h2>helpers</h2>
+
+  use this syntax? how to distinguish between string and properties?
+  {{encode-url slug}}
+  {{count-words slug}}
+  {{count-paragraphs slug}}
+  {{count-characters slug}}
+
+  or this syntax?  why not both?
+  {{#upper-case}}{{date}}{{/upper-case}}
+  {{#lower-case}}{{date}}{{/lower-case}}
+  {{#trim:50}}{{date}}{{/trim:50}}
+  {{#spacepad:10}}{{date}}{{/spacepad:10}}
+  {{#zeropad:10}}{{date}}{{/zeropad:10}}
+  {{#indent:10}}{{date}}{{/indent:10}}
+  {{#encode-url}}{{slug}}{{/encode-url}}
+  {{#count-words}}{{slug}}{{/count-words}}
+  {{#count-characters}}{{slug}}{{/count-characters}}
+  {{#count-paragraphs}}{{slug}}{{/count-paragraphs}}
+
+
+  <!-- https://movabletype.org/documentation/appendices/modifiers/escape.html-->
+  {{#escape}}{{/escape}}
+
+  {{#date-format}}
+  <p>{{MM}} {{YYY}} {{DD}}</p>
+  {{/date-format}}
+
+  {{#tagged:apple,banana}}
+    {{#posts}}
+
+    {{/posts}}
+  {{/tagged:apple,banana}}
+
+  {{#tagged:apple,banana}}
+    {{#posts}}
+
+    {{/posts}}
+  {{/tagged:apple,banana}}
+
+  {{#page}}
+    {{#posts}}
+
+    {{/posts}}
+  {{/page}}
+
+  {{#welcome.txt}}
+
+    {{html}}
+
+  {{/welcome.txt}}
+
+  {{#authors.json.metdata[author]}}
+
+  {{/authors.json}}
+
+  {{#data.json}}
+    {{#do-shit-here}}
+    {{/do-shit-here}}
+  {{/data.json}}
+
+  {{#Issues/main.txt}}
+
+    {{html}}
+
+  {{/Issues/main.txt}}
+
+  how do we add context to this?
+  {{#folder:Issues}}
+
+  {{/folder:Issues}}
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+---
+Routes:
+- /
+- /page/:page
+Locals:
+  page_size: 3
+Partials:
+  title: Index of {{name}}
+---
+
+<!DOCTYPE html>
+<html>
+  {{> head.html}}
+  <body>
+
+    {{> header.html}}
+
+    {{name}}
+
+    {{#folder:Issues}}
+
+        {{#file:description.txt}}
+
+        {{/file:description.txt}}
+
+        {{#contents}}
+
+        {{/contents}}
+
+    {{/folder:Issues}}
+
+    {{#pagination}}
+
+      {{#entries}}
+        {{title}}<br><br>
+      {{/entries}}
+
+      You are on page {{page}}.
+    {{/pagination}}
+
+    {{#path:/Issues}}
+
+      {{#path:./overview.txt}}
+
+      {{/path:./overview.txt}}
+
+      {{#contents}}
+
+        {{#source.txt}}
+
+          {{{html}}}
+
+        {{/source.txt}}
+
+      {{/contents}}
+
+    {{/path:/Issues}}
+
+
+  </body>
+</html>

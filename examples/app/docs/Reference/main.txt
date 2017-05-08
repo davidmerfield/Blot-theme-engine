@@ -1,0 +1,16 @@
+[Search box for filtering]
+
+# Site
+title --
+menu --
+
+# Post
+html --
+title ---
+
+# Lists
+recent_posts
+all_posts
+
+# Parameters
+

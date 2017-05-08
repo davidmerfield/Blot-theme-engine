@@ -1,0 +1,144 @@
+var Theme = require('theme');
+var express = require('express');
+var app = express();
+
+var theme = new Theme('/my-site');
+
+// My site is a folder containing two files:
+
+// index.html
+// Hi, my name is {{name}}!
+
+// routes.json
+// [{'/': 'index.html'}]
+
+theme.locals.name = function full (token, req, res, next) {
+  res.locals.name = 'David';
+  next();
+}
+
+theme.load(function(err){
+
+  app.use(theme.middleware);
+
+  app.listen();
+});
+
+
+// function (directory) {
+
+//   var Theme = {};
+
+//   Theme.compile = new Compile(directory);
+//   Theme.store = new Store(directory);
+//   Theme.render = new Render(directory);
+//   Theme.router = new Router(directory);
+
+//   Theme.update = function(callback) {
+
+//     Theme.compile(function(err, templates, routes){
+
+//       Theme.store(templates, routes, callback);
+//     });
+//   };
+
+//   Theme.middleware = function(req, res, next) {
+
+
+//   };
+
+//   return Theme;
+// }
+
+// USAGE
+
+// // To compile and store a theme from disk
+// Theme.update(path, function(err){
+
+//   // done
+
+// });
+
+// // EITHER
+// Theme.compile(path, function(err, templates, routes){
+
+//   Theme.store(path, templates, routes, function(err){
+
+//   // done
+
+//   });
+// })
+
+// // app.use(lookupBlog);
+// // app.use(sendFile);
+// // defaults to res.locals.theme?
+// // how do we lookup?
+
+// // OR
+// app.use(theme.router(params));
+// app.use(theme.render(locals));
+
+
+
+
+
+
+
+
+
+
+FEATURE IDEAS for metadata?
+
+DECLARE RETRIEVEABLE PARTIALS IN METADATA?
+var imports = [];
+
+we need to verify all these match the type of
+their expected values, e.g.
+we need to manipulate of these by user in frontmatter:
+routes:
+retrieve:
+to conform to expected format
+e.g.
+Retrieve:
+  Posts:
+    before: "12-2-120"
+    after:
+metadata.retrieve = metadata.retrieve || {};
+
+
+IMPORT JSON DATA INTO LOCALS
+
+if (type(metadata.import, 'string'))
+  imports.push(metadata.import);
+
+if (type(metadata.import, 'array'))
+  imports = metadata.import;
+
+forEach(imports, function(datapath, next){
+
+  if (datapath.indexOf('.json') === -1) {
+    return callback(new Error('Import only supports JSON files (.json). Please remove "' + datapath + '" from ' + path));
+  }
+
+  fs.readFile(join(root, datapath), 'utf-8', function(err, data){
+
+    // we need to surface this error
+    // since something went wrong...
+    if (err && err.code === 'ENOENT') {
+      return callback(new Error('There is no JSON file called "' + datapath + '" for "' + path + '" to import.'));
+    }
+
+    if (err) {
+      return callback(new Error('Failed to import "' + datapath + '" from "' + path + '".'));
+    }
+
+    try {
+      data = JSON.parse(data);
+    } catch (e) {
+      return callback(new Error('The JSON imported by "' + path + '" from "' + datapath + '" is invalid.'));
+    }
+
+    extend(metadata.locals).and(data);
+
+    next();
+  });

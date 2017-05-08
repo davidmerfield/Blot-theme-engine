@@ -1,0 +1,49 @@
+---
+Route: /:permalink*
+Partials:
+  title: Index of {{permalink}}
+---
+
+<!DOCTYPE html>
+<html>
+  {{> head.html}}
+  <body>
+    {{> header.html}}
+    Hi! You are at the permalink for {{permalink}}. Other entries:
+
+    <p>{{date}}</p>
+
+    {{#date}}
+    <p>{{MM}}-{{D}}-{{YYYY}}</p>
+    {{/date}}
+
+    {{#entries}}
+      {{title}}
+    {{/entries}}
+  </body>
+</html>
+
+{{#folder:Issues/}}
+
+  {{#file:caption.txt}}
+
+  {{/file:caption.txt}}
+
+{{/folder:Issues/}}
+
+
+
+{{#entry}}
+  {{#date}}{{YYY}}.{{MM}}.{{D}}{{/date}}
+{{/entry}}
+
+
+{{#entries sort:name limit:10}}
+
+
+
+{{/entries sort:name limit:10}}
+
+{{#entries has:metadata.author limit:10}}
+
+{{/entries has:metadata.author limit:10}}
