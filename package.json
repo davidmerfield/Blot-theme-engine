@@ -8,6 +8,7 @@
   "dependencies": {
     "front-matter": "2.1.2",
     "hogan.js": "3.0.2",
+    "log": "^1.4.0",
     "mime-types": "2.1.15",
     "minimatch": "3.0.3",
     "redis": "2.7.1",
