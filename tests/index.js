@@ -1,3 +1,4 @@
 require('./compile')(function(){
-  console.log('tests passed.');
+  console.log('--------------------------------------------------');
+  console.log('All tests complete.');
 });

@@ -2,7 +2,7 @@ var rimraf = require('rimraf');
 var tmp = __dirname + '/tmp';
 
 rimraf.sync(tmp);
-
+var assert = require('assert');
 var helper = require('helper');
 var forEach = helper.forEach;
 var tests = require('helper').dirToModule(__dirname, require);
@@ -28,16 +28,26 @@ module.exports = function (cb) {
       console.log(label, '>', test);
       Theme.compile(tmp, function(err, templates, routes){
 
-        console.log(err);
-        console.log(templates);
-        console.log(routes);
+        var result = {templates: templates, routes: routes};
+        var compare = test.compare.split(' > ');
+
+        try {
+          compare.forEach(function(selector){result = result[selector];});
+          assert.deepEqual(test.expected, result);
+        } catch (e) {
+          console.log('✖ ', test.label, 'test failed and returned incorrect result:');
+          console.log(JSON.stringify({templates: templates, routes: routes}, null, 2));
+          console.log('The result has unexpected values for', test.compare);
+          console.log(JSON.stringify(test.expected,null,2));
+          console.log();
+          return next(); // throw e;
+        }
+
+        console.log('✔ ', test.label, 'test passed!');
+
 
         next();
-
       });
-
-
-
     });
   }, function(){
 
