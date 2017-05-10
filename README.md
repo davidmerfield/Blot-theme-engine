@@ -12,28 +12,26 @@ It creates *templates* from files inside a *theme directory*, stores them as a *
 
 **Example**
 
-Create a folder (a.k.a *theme directory*) and put ```home.html``` inside:
-
-```html
-<html>
-<body>
-<h1>{{title}}</h1>
-</body>
-</html>
-```
-
-We can then use this theme in ```app.js```:
+This is a minimum viable ```app.js```. Obviously don't use this properly:
 
 ```javascript
+var fs = require('fs');
 var Express = require('express');
 var Theme = require('theme-engine');
-var theme, app, locals = {
+
+var theme, app, locals;
+
+// Create the theme directory and
+fs.mkdirSync(__dirname + '/theme');
+fs.writeFileSync(__dirname + '/theme/home.html', '{{title}}', 'utf-8')
+
+locals = {
 
   // This function is only invoked to render templates
   // which contain '{{title}}', like our home.html.
   // It's asychronous so we could make a db query.
   title: function(token, req, res, callback){
-    callback(null, 'Hello World');
+    callback(null, 'Hello world!');
   }
 };
 
@@ -50,12 +48,5 @@ app.use(theme);
 app.listen(...);
 ```
 
-When you point your web browser to ```/home.html``` you should see:
-
-```html
-<html>
-<body>
-<h1>Hello World!</h1>
-</body>
-</html>
+When you point your web browser to ```/home.html``` you should see "Hello world!".
 ```
