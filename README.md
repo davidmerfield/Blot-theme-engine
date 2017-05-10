@@ -30,14 +30,12 @@ var Theme = require('theme-engine');
 var theme, app;
 var locals = {
 
-  // This function is invoked to render templates
-  // which contain '{{title}}' (like home.html)
-  // We could make a database query here but to
-  // keep it simple, it just returns 'Hello World'
+  // This function is only invoked to render templates
+  // which contain '{{title}}', like our home.html.
+  // It's asychronous so we could make a db query.
   title: function(token, req, res, callback){
     callback(null, 'Hello World');
   }
-
 };
 
 // Initialize the theme
