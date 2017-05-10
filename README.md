@@ -21,16 +21,17 @@ var Theme = require('theme-engine');
 
 var app, theme, locals;
 
-// Create the theme files. You'd normally do
-// this ahead of time at your leisure.
-fs.mkdirSync('theme');
-fs.writeFileSync('theme/home.html', '{{title}}');
+// Create the folder containing our templates
+fs.mkdirSync('my_theme');
 
-// Initialize the theme
-theme = new Theme('/theme');
+// Create a template in the theme's folder
+fs.writeFileSync('my_theme/home.html', '{{title}}');
 
-// Tell the theme-engine how to find the value for {{title}}. 
-theme.retrieve('title', function(req, res, callback){
+// Load the theme from disk
+theme = new Theme('my_theme');
+
+// Tell the theme how to find the value for {{title}}. 
+theme.local('title', function(req, res, callback){
   return callback(null, 'Hello world!');
 });
 
