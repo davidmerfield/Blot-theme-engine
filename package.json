@@ -2,7 +2,7 @@
   "name": "blot-theme-engine",
   "version": "0.0.0",
   "description": "",
-  "main": "",
+  "main": "lib/index.js",
   "author": "David Merfield",
   "license": "CC0",
   "dependencies": {
