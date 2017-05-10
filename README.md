@@ -19,12 +19,15 @@ var fs = require('fs');
 var Express = require('express');
 var Theme = require('theme-engine');
 
-var theme, app, locals;
+var app, theme, locals;
 
 // Create the theme directory and
-fs.mkdirSync(__dirname + '/theme');
-fs.writeFileSync(__dirname + '/theme/home.html', '{{title}}', 'utf-8')
+// put a template file inside.
+fs.mkdirSync('theme');
+fs.writeFileSync('theme/home.html', '{{title}}');
 
+// Create the dictionary of functions used
+// to retrieve the value of local variables.
 locals = {
 
   // This function is only invoked to render templates
