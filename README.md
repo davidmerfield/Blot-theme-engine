@@ -26,20 +26,13 @@ var app, theme, locals;
 fs.mkdirSync('theme');
 fs.writeFileSync('theme/home.html', '{{title}}');
 
-// Create the dictionary of functions used
-// to retrieve the value of local variables.
-locals = {
-
-  // This function is only invoked to render templates
-  // which contain '{{title}}', like our home.html.
-  // It's asychronous so we could make a db query.
-  title: function(token, req, res, callback){
-    callback(null, 'Hello world!');
-  }
-};
-
 // Initialize the theme
-theme = new Theme({path: '/theme', locals: locals});
+theme = new Theme('/theme');
+
+// Tell the theme-engine how to find the value for {{title}}. 
+theme.retrieve('title', function(req, res, callback){
+  return callback(null, 'Hello world!');
+});
 
 // Initialize the app
 app = Express();
@@ -52,29 +45,3 @@ app.listen(...);
 ```
 
 When you point your web browser to ```/home.html``` you should see "Hello world!".
-
-
----
-
-What if this worked like app.param?
-
-```javascript
-var fs = require('fs');
-var Express = require('express');
-var Theme = require('theme-engine');
-
-var app = express();
-
-app.local('title', function(req, res, callback){
-  // something async
-  // pass value or error to callback
-});
-
-app.local('title', function(token, req, res, callback){
-  // when you pass a function with four arguments you
-  // can see the token too.
-});
-
-app.get('/', function(req, res,){res.render()});
-
-```
