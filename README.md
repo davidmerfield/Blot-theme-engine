@@ -16,15 +16,11 @@ The prototype for Blot's theme engine.
 
 **Why does this exist?**
 
-For efficient rendering of templates whose view you cannot compose ahead-of-time. To prevent fetching unused data for a view.
+For efficient rendering of templates whose view you cannot compose ahead-of-time. It prevents fetching unused data for a given route. Inspired by express' ```req.param(...``` function. It might help to think about this engine as a ```req.local(...``` function.
 
 **How does it work?**
 
-It takes a directory of files:
-  - creates 'templates' from certain files
-  - store them as a 'theme'
-  - provides express middleware for routing requests
-  - provides express middleware rendering the templates.
+It takes a directory of files, creates *templates* from files inside, stores them as a *theme*, then exposes Express middleware for routing requests and rendering the templates.
 
 **Example**
 
