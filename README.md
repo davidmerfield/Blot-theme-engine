@@ -35,20 +35,23 @@ Lets say our theme directory contains a single file, *home.html*:
 And then we can use this theme on our express app:
 
 ```javascript
-
 var express = require('express');
+var app = express();
 var Theme = require('blot-theme-engine');
 
-// This is where the magic happens
 // This dictionary tells the theme engine
-// how to find the value for each local variable
-// used in template
+// how to find the value for each variable
 var locals = {
-    title: function(req, res, next){
-      res.locals.title = 'Hello World';
-      next();
-    }
+
+  // This function is only called for routes
+  // whose template contains "{{title}}"
+  title: function(req, res, callback){
+
+    // We could do lots of stuff here
+    // e.g. make a database query...
+    callback(null, 'Hello World');
   }
+};
 
 var theme = new Theme({
   path: '/path/to/theme-directory',
@@ -59,8 +62,10 @@ var theme = new Theme({
 // this happens asynchronously
 theme.load(function(err){...});
 
-// use the theme with express
+// route requests to theme
 app.use(theme.middleware);
+
+// open the server to requests
 app.listen(...);
 ```
 
