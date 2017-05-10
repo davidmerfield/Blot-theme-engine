@@ -52,3 +52,29 @@ app.listen(...);
 ```
 
 When you point your web browser to ```/home.html``` you should see "Hello world!".
+
+
+---
+
+What if this worked like app.param?
+
+```javascript
+var fs = require('fs');
+var Express = require('express');
+var Theme = require('theme-engine');
+
+var app = express();
+
+app.local('title', function(req, res, callback){
+  // something async
+  // pass value or error to callback
+});
+
+app.local('title', function(token, req, res, callback){
+  // when you pass a function with four arguments you
+  // can see the token too.
+});
+
+app.get('/', function(req, res,){res.render()});
+
+```
