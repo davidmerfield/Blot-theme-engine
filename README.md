@@ -1,12 +1,26 @@
-The prototype for Blot's new theme rendering engine.
+The prototype for Blot's theme engine.
 
-A *theme* refers to a directory of *template* files.
+**Glossary**
+
+- *template* ...
+- *theme* is a collection of templates used to render a site.
+- *theme directory* is the folder which contains the template files.
+- *route* ...
+- *locals* ...
+- *partials* ...
+
+**Why does this exist?**
+
+
+**How does it work?**
 
 It takes a directory of files:
   - creates 'templates' from certain files
   - store them as a 'theme'
   - provides express middleware for routing requests
   - provides express middleware rendering the templates.
+
+**Example**
 
 Lets say our theme directory contains a single file, *home.html*:
 
@@ -50,9 +64,12 @@ app.use(theme.middleware);
 app.listen(...);
 ```
 
-Now when we request ```/home.html``` we should see:
+Now when we point our web browser to ```/home.html``` we should see:
 
-
-```
-<html><body>Hello World!</body></html>
+```html
+<html>
+<body>
+<h1>Hello World!</h1>
+</body>
+</html>
 ```
