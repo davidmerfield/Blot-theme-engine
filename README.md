@@ -1,14 +1,10 @@
 # Blot's theme engine
 
-*This is a prototype for an engine to render Blot sites.*
-
-**Glossary**
-
-A *theme* is a collection of *templates* used to render a site. A *template* is used to render all the URLS which match a *route*. A **template** can contain variables (*locals*) and sub-templates (*partials*).
+This is a prototype for an engine to render Blot sites. A *theme* is a collection of *templates* used to render a site. A *template* is used to render the response for requests to a set of URLs which match a *route*. A *template* can contain variables, a.k.a. *locals*, and sub-templates, a.k.a. *partials*.
 
 **Why does this exist?**
 
-For efficient rendering of templates whose view you cannot compose ahead-of-time. It prevents fetching unused data for a given route. Inspired by express' ```req.param(...``` function. It might help to think about this engine as a ```req.local(...``` function.
+For efficient rendering of mustache templates. It avoids fetching unused data for a given route and given a dictionary of methods to retrieve the value of locals will build the view for you automatically.
 
 **How does it work?**
 
