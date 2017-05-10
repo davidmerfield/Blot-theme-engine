@@ -29,16 +29,13 @@ var express = require('express');
 var app = express();
 var Theme = require('blot-theme-engine');
 
-// This dictionary tells the theme engine
-// how to find the value for each variable
+// Tell the theme engine how to find the value for each local
 var locals = {
 
-  // This function is only called for routes
-  // whose template contains "{{title}}"
+  // Only called for routes whose template contains "{{title}}"
   title: function(token, req, res, callback){
 
-    // We could do lots of stuff here
-    // e.g. make a database query...
+    // We could make a database query here...
     callback(null, 'Hello World');
   }
 };
@@ -48,14 +45,13 @@ var theme = new Theme({
   locals: locals
 });
 
-// parse and store the theme
-// this happens asynchronously
+// Compile and store the theme asynchronously
 theme.load(function(err){...});
 
-// route requests to theme
+// Route requests to theme
 app.use(theme.middleware);
 
-// open the server to requests
+// Open the server to requests
 app.listen(...);
 ```
 
