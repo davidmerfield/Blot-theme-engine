@@ -1,4 +1,6 @@
+var log = require('log');
+
 require('./compile')(function(){
-  console.log('--------------------------------------------------');
-  console.log('All tests complete.');
+  log.info('All tests complete!');
+  process.exit();
 });
