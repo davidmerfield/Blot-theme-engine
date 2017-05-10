@@ -40,12 +40,10 @@ var locals = {
   }
 };
 
-var theme = new Theme({
-  path: '/path/to/theme-directory',
-  locals: locals
-});
+// Initialize the theme
+var theme = new Theme({path: '/theme', locals: locals});
 
-// Compile and store the theme asynchronously
+// Compile and store the theme in /theme
 theme.load(function(err){...});
 
 // Route requests to theme
