@@ -1,7 +1,7 @@
 {
   "name": "blot-theme-engine",
   "version": "0.0.0",
-  "description": "",
+  "description": "Turns a folder of theme files into a theme for a webserver",
   "main": "lib/index.js",
   "author": "David Merfield",
   "license": "CC0",
