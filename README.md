@@ -1,5 +1,3 @@
-The prototype for Blot's theme engine.
-
 **Glossary**
 
 A *theme* is a collection of *templates* used to render a site. A *template* is used to render all the URLS which match a *route*. A **template** can contain variables (*locals*) and sub-templates (*partials*).
