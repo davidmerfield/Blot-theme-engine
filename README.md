@@ -21,8 +21,7 @@ var Theme = require('theme-engine');
 
 var app, theme, locals;
 
-// Create the theme directory and
-// put a template file inside.
+// Create the theme. You'd normally do this ahead of time.
 fs.mkdirSync('theme');
 fs.writeFileSync('theme/home.html', '{{title}}');
 
