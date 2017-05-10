@@ -8,11 +8,11 @@ For efficient rendering of mustache templates. It avoids fetching unused data fo
 
 **How does it work?**
 
-It creates *templates* from files inside a directory, stores them as a *theme*, then exposes Express middleware for routing requests and rendering the templates.
+It creates *templates* from files inside a *theme directory*, stores them as a *theme*, then exposes Express middleware for routing requests and rendering the *templates*.
 
 **Example**
 
-Lets say our theme directory contains a single file, *home.html*:
+Create a folder (a.k.a *theme directory*) and put ```home.html``` inside:
 
 ```html
 <html>
@@ -22,7 +22,7 @@ Lets say our theme directory contains a single file, *home.html*:
 </html>
 ```
 
-And then we can use this theme on our express app:
+We can then use this theme in ```app.js```:
 
 ```javascript
 var express = require('express');
@@ -59,7 +59,7 @@ app.use(theme.middleware);
 app.listen(...);
 ```
 
-Now when we point our web browser to ```/home.html``` we should see:
+When you point your web browser to ```/home.html``` you should see:
 
 ```html
 <html>
