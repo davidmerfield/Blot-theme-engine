@@ -1,6 +1,6 @@
 # Blot's theme engine
 
-*This is a prototype.*
+*This is a prototype for an engine to render Blot sites.*
 
 **Glossary**
 
