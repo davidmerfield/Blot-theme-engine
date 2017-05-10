@@ -10,8 +10,12 @@ It takes a directory of files:
 
 Lets say our theme directory contains a single file, *home.html*:
 
-```
-<html><body>{{title}}!</body></html>
+```html
+<html>
+<body>
+<h1>{{title}}</h1>
+</body>
+</html>
 ```
 
 And then we can use this theme on our express app:
@@ -21,24 +25,32 @@ And then we can use this theme on our express app:
 var express = require('express');
 var Theme = require('blot-theme-engine');
 
-var theme = new Theme({
-  path: '/path/to/theme-directory',
-  locals: {
-    title: function(req, res){
-      res.locals.title = 'Hello World'
+// This is where the magic happens
+// This dictionary tells the theme engine
+// how to find the value for each local variable
+// used in template
+var locals = {
+    title: function(req, res, next){
+      res.locals.title = 'Hello World';
+      next();
     }
   }
+
+var theme = new Theme({
+  path: '/path/to/theme-directory',
+  locals: locals
 });
 
 // parse and store the theme
-theme.load();
+// this happens asynchronously
+theme.load(function(err){...});
 
 // use the theme with express
 app.use(theme.middleware);
 app.listen(...);
 ```
 
-Now when we request /index.html we should see:
+Now when we request ```/home.html``` we should see:
 
 
 ```
