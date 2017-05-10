@@ -16,7 +16,7 @@ The prototype for Blot's theme engine.
 
 **Why does this exist?**
 
-For efficient rendering of templates whose view you cannot compose ahead-of-time.
+For efficient rendering of templates whose view you cannot compose ahead-of-time. To prevent fetching unused data for a view.
 
 **How does it work?**
 
