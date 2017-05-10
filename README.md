@@ -1,6 +1,6 @@
 # Blot's theme engine
 
-This is a prototype for an engine to render Blot sites. A *theme* is a collection of *templates* used to render a site. A *template* is used to render the response for requests to a set of URLs which match a *route*. A *template* can contain variables, a.k.a. *locals*, and sub-templates, a.k.a. *partials*.
+This is a half-working prototype for an engine to render Blot sites. A *theme* is a collection of *templates* used to render a site. A *template* is used to render the response for requests to a set of URLs which match a *route*. A *template* can contain variables, a.k.a. *locals*, and sub-templates, a.k.a. *partials*.
 
 **Why does this exist?**
 
@@ -21,7 +21,8 @@ var Theme = require('theme-engine');
 
 var app, theme, locals;
 
-// Create the theme. You'd normally do this ahead of time.
+// Create the theme files. You'd normally do
+// this ahead of time at your leisure.
 fs.mkdirSync('theme');
 fs.writeFileSync('theme/home.html', '{{title}}');
 
