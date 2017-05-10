@@ -27,8 +27,7 @@ We can then use this theme in ```app.js```:
 ```javascript
 var Express = require('express');
 var Theme = require('theme-engine');
-var theme, app;
-var locals = {
+var theme, app, locals = {
 
   // This function is only invoked to render templates
   // which contain '{{title}}', like our home.html.
