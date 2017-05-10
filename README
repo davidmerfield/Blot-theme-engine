@@ -1,7 +1,0 @@
-The prototype for Blot's new theme rendering engine.
-
-It takes a directory of files:
-  - creates 'templates' from certain files
-  - store them as a 'theme' 
-  - provides express middleware for routing requests
-  - provides express middleware rendering the templates.
