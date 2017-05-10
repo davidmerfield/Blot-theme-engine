@@ -12,7 +12,7 @@ It creates *templates* from files inside a *theme directory*, stores them as a *
 
 **Example**
 
-This is a minimum viable ```app.js```. Obviously don't use this properly:
+This is a minimum viable ```app.js```:
 
 ```javascript
 var fs = require('fs');
@@ -52,4 +52,3 @@ app.listen(...);
 ```
 
 When you point your web browser to ```/home.html``` you should see "Hello world!".
-```
