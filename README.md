@@ -25,10 +25,9 @@ Create a folder (a.k.a *theme directory*) and put ```home.html``` inside:
 We can then use this theme in ```app.js```:
 
 ```javascript
-var express = require('express');
-var app = express();
-var Theme = require('blot-theme-engine');
-
+var Express = require('express');
+var Theme = require('theme-engine');
+var theme, app;
 var locals = {
 
   // This function is invoked to render templates
@@ -42,15 +41,18 @@ var locals = {
 };
 
 // Initialize the theme
-var theme = new Theme({path: '/theme', locals: locals});
+theme = new Theme({path: '/theme', locals: locals});
 
 // Compile and store the theme in /theme
 theme.load(function(err){...});
 
+// Initialize the app
+app = Express();
+
 // Route requests to theme
 app.use(theme.middleware);
 
-// Open the server to requests
+// Open the app to requests
 app.listen(...);
 ```
 
