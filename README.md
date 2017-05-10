@@ -40,14 +40,11 @@ var theme, app, locals = {
 // Initialize the theme
 theme = new Theme({path: '/theme', locals: locals});
 
-// Compile and store the theme in /theme
-theme.load(function(err){...});
-
 // Initialize the app
 app = Express();
 
 // Route requests to theme
-app.use(theme.middleware);
+app.use(theme);
 
 // Open the app to requests
 app.listen(...);
