@@ -45,7 +45,7 @@ var locals = {
 
   // This function is only called for routes
   // whose template contains "{{title}}"
-  title: function(req, res, callback){
+  title: function(token, req, res, callback){
 
     // We could do lots of stuff here
     // e.g. make a database query...
