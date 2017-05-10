@@ -29,15 +29,16 @@ var express = require('express');
 var app = express();
 var Theme = require('blot-theme-engine');
 
-// Tell the theme engine how to find the value for each local
 var locals = {
 
-  // Only called for routes whose template contains "{{title}}"
+  // This function is invoked to render templates
+  // which contain '{{title}}' (like home.html)
+  // We could make a database query here but to
+  // keep it simple, it just returns 'Hello World'
   title: function(token, req, res, callback){
-
-    // We could make a database query here...
     callback(null, 'Hello World');
   }
+
 };
 
 // Initialize the theme
