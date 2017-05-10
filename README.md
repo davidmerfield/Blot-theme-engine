@@ -4,7 +4,7 @@ This is a half-working prototype for an engine to render Blot sites. A *theme* i
 
 **Why does this exist?**
 
-For efficient rendering of mustache templates. It avoids fetching unused data for a given route and given a template and a dictionary of methods to retrieve the value of locals will build the view and render the template for you automatically.
+For efficient rendering of mustache templates. When given a template and a dictionary of methods to retrieve the value of locals, it will build the view and render the template for you automatically.
 
 **How does it work?**
 
