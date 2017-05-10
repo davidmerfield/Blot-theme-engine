@@ -2,15 +2,21 @@ The prototype for Blot's theme engine.
 
 **Glossary**
 
-- *template* ...
-- *theme* is a collection of templates used to render a site.
-- *theme directory* is the folder which contains the template files.
-- *route* ...
-- *locals* ...
-- *partials* ...
+*template* ...
+
+*theme* is a collection of templates used to render a site.
+
+*theme directory* is the folder which contains the template files.
+
+*route* ...
+
+*locals* ...
+
+*partials* are partial *templates* used to render a template. these are usually shared by multiple templates.
 
 **Why does this exist?**
 
+For efficient rendering of templates whose view you cannot compose ahead-of-time.
 
 **How does it work?**
 
