@@ -3,10 +3,10 @@ var server = express();
 var exec = require('child_process').exec;
 var path = require('path');
 var responseTime = require('./responseTime');
-var theme = require('theme');
+var theme = require('../../lib');
 var fs = require('fs');
-var THEME_DIR = path.resolve(__dirname + '/../theme');
-var BLOG_DIR = path.resolve(__dirname + '/../blog');
+var THEME_DIR = path.resolve(__dirname + '/theme');
+var BLOG_DIR = path.resolve(__dirname + '/blog');
 
 console.log('Making sure redis is running!');
 exec('redis-server --port 6666 --dir ~/Projects/theme/');
