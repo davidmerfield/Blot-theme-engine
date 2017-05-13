@@ -12,7 +12,7 @@ var fs = require('fs');
 var join = require('path').join;
 var Theme = require('../../lib');
 var log = require('log');
-
+var jsondiff = require('json-diff');
 
 module.exports = function (cb) {
 
@@ -40,40 +40,44 @@ module.exports = function (cb) {
 
         if (err) return log.error(err);
 
+        var result = theme;
         var compare;
 
         if (test.compare) compare = test.compare.split(' > ');
 
-        try {
+        if (test.compare && compare.length > 1) {
 
-          if (test.compare && compare.length > 1) {
-
-            var result = theme;
-
+          try {
             compare.forEach(function(selector){
               result = result[selector];
             });
-
-            assert.deepEqual(test.expected, result);
-
-          } else if (test.compare) {
-            assert.deepEqual(test.expected, theme[test.compare]);
-          } else {
-            assert.deepEqual(test.expected, theme);
+          } catch (e) {
+            log.error(__dirname + '/' + label + '.js');
+            log.error('The result does not have the property', test.compare, JSON.stringify(theme, null, 2));
+            return next();
           }
 
+        } else if (test.compare) {
+
+          result = theme[test.compare];
+        }
+
+        try {
+          assert.deepEqual(test.expected, result);
         } catch (e) {
 
           var _level = log.level;
           log.level = 'debug';
 
           return Theme.compile(tmp, function(err, theme){
+            log.error(__dirname + '/' + label + '.js');
             log.error(
-              test.label, 'test failed and returned: \n',
-              JSON.stringify(theme, null, 2),
-              '\n Result should have this ', test.compare, '\n',
-              JSON.stringify(test.expected,null,2)
+              test.label, 'test failed and returned: \n'
+              // JSON.stringify(theme, null, 2),
+              // '\n Result should have this ', test.compare, '\n',
+              // JSON.stringify(test.expected,null,2)
             );
+            console.log(jsondiff.diffString(result, test.expected));
             log.level = _level;
             return next(); // throw e;
           });

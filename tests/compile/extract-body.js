@@ -1,6 +1,6 @@
 module.exports = {
   label: 'Extract body from template',
-  folder: {'body.html': 'Hello world!'},
-  compare: 'templates > body.html > body',
+  folder: {'text.html': 'Hello world!'},
+  compare: 'templates > /text.html > text',
   expected: 'Hello world!'
 };

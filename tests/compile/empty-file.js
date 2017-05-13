@@ -3,8 +3,8 @@ module.exports = {
   folder: {'index.html': ''},
   compare: 'templates',
   expected: {
-    "index.html": {
-      "body": "",
+    "/index.html": {
+      "text": "",
       "locals": {},
       "partials": {},
       "retrieve": {}

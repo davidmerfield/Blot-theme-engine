@@ -5,7 +5,7 @@ module.exports = {
   folder: {'index.xml': CONTENT, 'index.rss': CONTENT},
   compare: 'templates',
   expected: {
-    "index.rss": {"body": CONTENT, "locals": {}, "partials": {}, "retrieve": {} },
-    "index.xml": {"body": CONTENT, "locals": {}, "partials": {}, "retrieve": {} }
+    "/index.rss": {"text": CONTENT, "locals": {}, "partials": {}, "retrieve": {} },
+    "/index.xml": {"text": CONTENT, "locals": {}, "partials": {}, "retrieve": {} }
   }
 };

@@ -5,8 +5,8 @@ module.exports = {
   folder: {'index.txt': CONTENT, 'index.rtf': CONTENT, 'index.md': CONTENT},
   compare: 'templates',
   expected: {
-    "index.txt": {"body": CONTENT, "locals": {}, "partials": {}, "retrieve": {} },
-    "index.rtf": {"body": CONTENT, "locals": {}, "partials": {}, "retrieve": {} },
-    "index.md": {"body": CONTENT, "locals": {}, "partials": {}, "retrieve": {} }
+    "/index.txt": {"text": CONTENT, "locals": {}, "partials": {}, "retrieve": {} },
+    "/index.rtf": {"text": CONTENT, "locals": {}, "partials": {}, "retrieve": {} },
+    "/index.md": {"text": CONTENT, "locals": {}, "partials": {}, "retrieve": {} }
   }
 };

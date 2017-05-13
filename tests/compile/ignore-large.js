@@ -12,6 +12,6 @@ function data (size){
 
 module.exports = {
   label: 'Ignore template files that are too large.',
-  folder: {'too-large.html': data(2.5*1000*1000)}, // 2.5mb
-  expected: {"templates": {}, "routes": [], "ignored": ["too-large.html"]}
+  folder: {'/too-large.html': data(2.5*1000*1000)}, // 2.5mb
+  expected: {"templates": {}, "routes": [], "ignored": [["/too-large.html", "TOOLARGE"]]}
 };

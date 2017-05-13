@@ -3,20 +3,20 @@ module.exports = {
   folder: {'parent.html': 'Parent!', 'child/template.html': 'Child!', 'deeply/nested/child/template.html': 'Nested Child!'},
   compare: 'templates',
   expected: {
-    "child/template.html": {
-      "body": "Child!",
+    "/child/template.html": {
+      "text": "Child!",
       "locals": {},
       "partials": {},
       "retrieve": {}
     },
-    "deeply/nested/child/template.html": {
-      "body": "Nested Child!",
+    "/deeply/nested/child/template.html": {
+      "text": "Nested Child!",
       "locals": {},
       "partials": {},
       "retrieve": {}
     },
-    "parent.html": {
-      "body": "Parent!",
+    "/parent.html": {
+      "text": "Parent!",
       "locals": {},
       "partials": {},
       "retrieve": {}
