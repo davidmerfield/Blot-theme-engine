@@ -4,22 +4,19 @@ module.exports = {
   compare: 'templates',
   expected: {
     "/child/template.html": {
-      "text": "Child!",
-      "locals": {},
-      "partials": {},
-      "retrieve": {}
+      "tree": [{"tag":"_t","text": new String("Child!")}],
+      "locals":{},
+      "retrieve":{}
     },
-    "/deeply/nested/child/template.html": {
-      "text": "Nested Child!",
-      "locals": {},
-      "partials": {},
-      "retrieve": {}
+    "/deeply/nested/child/template.html":{
+      "tree":[{"tag":"_t","text": new String("Nested Child!")}],
+      "locals":{},
+      "retrieve":{}
     },
-    "/parent.html": {
-      "text": "Parent!",
-      "locals": {},
-      "partials": {},
-      "retrieve": {}
+    "/parent.html":{
+      "tree":[{"tag":"_t","text": new String("Parent!")}],
+      "locals":{},
+      "retrieve":{}
     }
   }
 };

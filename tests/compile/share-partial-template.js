@@ -1,25 +1,24 @@
 module.exports = {
   label: 'Share partial template with multiple templates.',
-  folder: {'index.html': '{{> head.html}} A', 'page.html': '{{> head.html}} B', 'head.html': '<head>', },
+  folder: {'index.html': '{{> head.html}}-A', 'page.html': '{{> head.html}}-B', 'head.html': 'HEAD', },
   compare: 'templates',
   expected: {
-    "/head.html": {
-      text: "<head>",
-      locals: {},
-      partials: {},
-      retrieve: {}
+    "/head.html":{
+      "tree":[{"tag":"_t", "text": new String("HEAD")}],
+      "locals":{},
+      "retrieve":{}
     },
-    "/index.html": {
-      text: "{{> head.html}} A",
-      locals: {},
-      partials: {"head.html": "<head>"},
-      retrieve: {}
+    "/index.html":{
+      // because the partial is replaced, there are two adjacent text nodes
+      "tree":[{"tag":"_t","text": new String("HEAD")}, {"tag":"_t","text": new String("-A")}],
+      "locals":{},
+      "retrieve":{}
     },
-    "/page.html": {
-      text: "{{> head.html}} B",
-      locals: {},
-      partials: {"head.html": "<head>"},
-      retrieve: {}
+    "/page.html":{
+      // because the partial is replaced, there are two adjacent text nodes
+      "tree":[{"tag":"_t","text": new String("HEAD")}, {"tag":"_t","text": new String("-B")}],
+      "locals":{},
+      "retrieve":{}
     }
   }
 };

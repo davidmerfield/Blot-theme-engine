@@ -36,9 +36,45 @@ module.exports = function (cb) {
 
     }, function(){
 
+      function redo (cb) {
+
+        var _level = log.level;
+        log.level = 'debug';
+
+        Theme.compile(tmp, function(err, theme){
+          log.level = _level;
+          log.error(__dirname + '/' + label + '.js');
+          cb(err, theme);
+        });
+      }
+
       Theme.compile(tmp, function(err, theme){
 
-        if (err) return log.error(err);
+        if (test.error && err && (err.message === test.error || err.code === test.error)) {
+
+          log.info(chalk.green('✔ ' + test.label));
+          return next();
+
+        } else if (test.error) {
+
+          return redo(function(_err, _theme){
+            log.error('should have returned an error with code or message', test.error, 'but returned:');
+            log.error('Error:', err);
+            log.error('Theme:', theme);
+            log.debug(err);
+            next();
+          });
+
+        } else if (err) {
+
+          return redo(function(_err, _theme){
+            log.error('should not have returned an error but returned:');
+            log.error('Error:', err);
+            log.error('Theme:', theme);
+            log.debug(err);
+            next();
+          });
+        }
 
         var result = theme;
         var compare;
@@ -52,9 +88,12 @@ module.exports = function (cb) {
               result = result[selector];
             });
           } catch (e) {
-            log.error(__dirname + '/' + label + '.js');
-            log.error('The result does not have the property', test.compare, JSON.stringify(theme, null, 2));
-            return next();
+
+            return redo(function(err, theme){
+
+              log.error('The result does not have the property', test.compare, JSON.stringify(theme, null, 2));
+              next();
+            });
           }
 
         } else if (test.compare) {
@@ -66,10 +105,9 @@ module.exports = function (cb) {
           assert.deepEqual(test.expected, result);
         } catch (e) {
 
-          var _level = log.level;
-          log.level = 'debug';
+          return redo(function(err, theme){
 
-          return Theme.compile(tmp, function(err, theme){
+            log.debug(err);
             log.error(__dirname + '/' + label + '.js');
             log.error(
               test.label, 'test failed and returned: \n'
@@ -78,14 +116,12 @@ module.exports = function (cb) {
               // JSON.stringify(test.expected,null,2)
             );
             console.log(jsondiff.diffString(result, test.expected));
-            log.level = _level;
-            return next(); // throw e;
+            log.debug(result);
+            next();
           });
         }
 
         log.info(chalk.green('✔ ' + test.label));
-
-
         next();
       });
     });

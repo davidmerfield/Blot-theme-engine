@@ -3,14 +3,8 @@ module.exports = {
   folder: {'/index.html': '---\nrOuTe : /c\nrOuTes:\n- /a\n- /b\n---'},
   compare: 'routes',
   expected: [
-    {
-      "/a": "/index.html"
-    },
-    {
-      "/b": "/index.html"
-    },
-    {
-      "/c": "/index.html"
-    }
+    ["/a", "/index.html"],
+    ["/b", "/index.html"],
+    ["/c", "/index.html"],
   ],
 };
