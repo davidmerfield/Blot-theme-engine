@@ -35,6 +35,10 @@ for (var template in templates)
 for (var template in templates) {
 
   var tree = templates[template];
+  walk(tree);
+}
+
+function walk (tree) {
 
   for (var i = 0; i < tree.length;i++) {
 
@@ -46,9 +50,11 @@ for (var template in templates) {
 
       Array.prototype.splice.apply(tree, [i, 1].concat(partial));
     }
-  }
-}
 
+    if (tree[i].nodes) walk(tree);
+  }
+
+}
 console.log(templates);
 
 
