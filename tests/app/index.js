@@ -3,7 +3,6 @@ var server = express();
 var exec = require('child_process').exec;
 var path = require('path');
 var responseTime = require('./responseTime');
-var theme = require('../../lib');
 var fs = require('fs');
 var THEME_DIR = path.resolve(__dirname + '/theme');
 var BLOG_DIR = path.resolve(__dirname + '/blog');
@@ -11,6 +10,7 @@ var BLOG_DIR = path.resolve(__dirname + '/blog');
 console.log('Making sure redis is running!');
 exec('redis-server --port 6666 --dir ~/Projects/theme/');
 console.log('Remember to shut down redis when youre done!');
+
 
 var dashboard = express();
 
@@ -23,6 +23,8 @@ dashboard.route('/')
   .post(function(req, res){
     res.redirect('/');
   });
+
+var theme = require('../../lib');
 
 console.log('Compiling theme from', THEME_DIR);
 theme.update(THEME_DIR, function (err){
